@@ -12,15 +12,20 @@ public class WordGram {
 	private int myHash;         // cached hash value
 
 	/**
-	 * Create WordGram (add comments)
-	 * @param source
-	 * @param start
-	 * @param size
+	 * Create WordGram and initialize the private variables
+	 * @param source is the source array
+	 * @param start is the starting index
+	 * @param size is the size of the array
 	 */
 	public WordGram(String[] source, int start, int size) {
 		myWords = new String[size];
+		for (int i=start ; i< start + size; i++) {
+			myWords[i-start]= source[i];
+		}
 		// TODO: initialize myWords and ...
-	}
+		myToString= null;
+		myHash= 0;
+		}
 
 	/**
 	 * Return string at specific index in this WordGram
@@ -35,12 +40,12 @@ public class WordGram {
 	}
 
 	/**
-	 * Complete this comment
-	 * @return
+	 * 
+	 * @return the length array myWords
 	 */
 	public int length(){
 		// TODO: change this
-		return 0;
+		return myWords.length;
 	}
 
 
@@ -49,32 +54,45 @@ public class WordGram {
 		if (! (o instanceof WordGram) || o == null){
 			return false;
 		}
-
-	    // TODO: complete this method
+		WordGram wg = (WordGram) o;
+		if (this.length() != wg.length()) {
+			return false;
+		}
+		for(int i=0 ; i < myWords.length; i ++) {
+			if (!(wg.myWords[i].equals(myWords[i]))) {
+				return false;
+			}
+		}
 		return true;
 	}
 
 	@Override
 	public int hashCode(){
 		// TODO: complete this method
-		return myHash;
+		return this.toString().hashCode();
+		
 	}
-	
-
 	/**
-	 * Create and complete this comment
+	 * 
 	 * @param last is last String of returned WordGram
-	 * @return
+	 * @return a WordGram object which contains items from myWords array
+	 * shifted right by one index plus the last String
 	 */
 	public WordGram shiftAdd(String last) {
 		WordGram wg = new WordGram(myWords,0,myWords.length);
 		// TODO: Complete this method
+		for (int i= 1; i< wg.myWords.length ; i ++) {
+			wg.myWords[i-1]= wg.myWords[i];
+		}
+		wg.myWords[myWords.length - 1] = last;
 		return wg;
 	}
 
 	@Override
 	public String toString(){
 		// TODO: Complete this method	
+		//for (String str : myWords) {
+		myToString= String.join(" ", myWords);
 		return myToString;
 	}
 }

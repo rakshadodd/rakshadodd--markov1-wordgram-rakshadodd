@@ -1,4 +1,4 @@
-YOUR NAME and YOUR NETID
+Raksha Doddabele, rsd35
 
 Run WordGramDiver for wordgrams of size 2-10 and record
 the number of WordGram values/objects that occur more than
@@ -15,12 +15,12 @@ values of WSIZE
 WSIZE    # duplicates
 2        60,453
 3        10,756
-4
-5
-7
-8
-9
-10
+4		 1,987
+5		 667
+7		 226
+8		 151
+9		 105
+10		 73
 
 =====
 Explain in your own words the conceptual differences between 
@@ -29,11 +29,17 @@ Answer these questions:
 
 (1) Why the results of these methods should be the same in 
 terms of changes made to the HashSet parameter.
-
+	Because they make the same Wordgrams, they just make it in a different way 
+	
 (2) What are the conceptual differences between the two
 benchmarking methods
+	benchmark creates new Wordgram object with strings from the file, benchmarkshift also creates a Wordgram
+	object with strings from the file but all strings are shifted right by one index, using the shiftAdd method
 
 (3) Is the total amount of memory allocated for arrays
 the same or different in the two methods? Account for
 arrays created in the methods and arrays created by
 WordGram objects. Try to be quantitative in answering.
+
+The arrays created by the Wordgram objects in benchmark and benchmarkShift are the same because they create arrays of the same size (WSIZE).
+The arrays created within the methods are probably larger than the Wordgram objects but they are the same between the two methods. 
